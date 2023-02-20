@@ -15,9 +15,8 @@ function App() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // TODO: Properly set backend URL
     axios
-      .post("http://localhost:2830/api/lottery", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/lottery`, {
         url: url,
         winnerCount: Number(winnerCount),
       })
