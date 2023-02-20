@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 
@@ -9,8 +8,7 @@ type Winner = {
 };
 
 function App() {
-  // const [url, setURL] = useState("");
-  const [url, setURL] = useState("https://t.bilibili.com/763258243266904116"); // todo delete me
+  const [url, setURL] = useState("");
   const [winnerCount, setWinnerCount] = useState("1");
   const [winners, setWinners] = useState<Winner[]>([]);
 
