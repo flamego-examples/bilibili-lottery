@@ -13,7 +13,7 @@
     ```sh
     pnpm start
     ```
-1. 启动后端开发版本：
+1. 在另一个终端窗口启动后端：
     ```sh
     cd ../backend
     go run ./cmd
