@@ -13,7 +13,7 @@ function LotteryForm({
   setWinners: (winners: Winner[]) => void;
 }) {
   const [url, setURL] = useState("");
-  const [winnerCount, setWinnerCount] = useState("1");
+  const [winnerCount, setWinnerCount] = useState(1);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,7 +21,7 @@ function LotteryForm({
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/api/lottery`, {
         url: url,
-        winnerCount: Number(winnerCount),
+        winnerCount: winnerCount,
       })
       .then((resp) => {
         setWinners(resp.data.data);
@@ -79,7 +79,10 @@ function LotteryForm({
                   name="winners"
                   id="winners"
                   value={winnerCount}
-                  onChange={(event) => setWinnerCount(event.target.value)}
+                  onChange={(event) => {
+                    const winnerCount = Number(event.target.value);
+                    setWinnerCount(winnerCount <= 0 ? 1 : winnerCount);
+                  }}
                   className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
