@@ -11,7 +11,7 @@
     ```
 1. 启动前端开发版本：
     ```sh
-    pnpm start
+    pnpm install && pnpm start
     ```
 1. 在另一个终端窗口启动后端：
     ```sh
