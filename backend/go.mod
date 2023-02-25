@@ -1,6 +1,6 @@
 module github.com/flamego-examples/bilibili-lottery
 
-go 1.20
+go 1.19
 
 require (
 	github.com/flamego/binding v1.2.0
