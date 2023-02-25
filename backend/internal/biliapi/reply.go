@@ -78,7 +78,7 @@ type ListReplyResponse struct {
 				} `json:"jump_url"`
 				MaxLine     int `json:"max_line"`
 				AtNameToMid struct {
-					Field1 int `json:"！"`
+					Field1 int `json:"！"` //nolint:staticcheck
 				} `json:"at_name_to_mid,omitempty"`
 			} `json:"content"`
 		} `json:"replies"`
