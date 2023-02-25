@@ -4,13 +4,13 @@ on:
     branches: [ main ]
     paths:
       - '**.go'
-      - 'go.mod'
+      - 'backend/go.mod'
       - '.golangci.yml'
       - '.github/workflows/go.yml'
   pull_request:
     paths:
       - '**.go'
-      - 'go.mod'
+      - 'backend/go.mod'
       - '.golangci.yml'
       - '.github/workflows/go.yml'
 env:
