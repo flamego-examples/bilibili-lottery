@@ -1,6 +1,23 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { XCircleIcon } from "@heroicons/react/20/solid";
+
+function AlertDanger({ title, children }: { title: String; children: any }) {
+  return (
+    <div className="rounded-md bg-red-50 p-4">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-red-800">{title}</h3>
+          <div className="mt-2 text-sm text-red-700">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 type Winner = {
   uid: Number;
@@ -14,6 +31,7 @@ function LotteryForm({
 }) {
   const [url, setURL] = useState("");
   const [winnerCount, setWinnerCount] = useState(1);
+  const [error, setError] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +44,14 @@ function LotteryForm({
       .then((resp) => {
         setWinners(resp.data.data);
       })
-      .catch((reason) => console.log("Failed to get lottery:", reason));
+      .catch((error) => {
+        console.log(error.response);
+        if (error.response) {
+          setError(error.response.data.error);
+        } else {
+          setError(error.message);
+        }
+      });
   };
 
   return (
@@ -44,6 +69,9 @@ function LotteryForm({
               非官方抽奖小程序，对抽奖结果概不负责！
             </p>
           </div>
+          {error.length > 0 && (
+            <AlertDanger title="抽奖发生错误">{error}</AlertDanger>
+          )}
 
           <div className="space-y-6 sm:space-y-5">
             <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
