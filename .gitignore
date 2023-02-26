@@ -1,2 +1,6 @@
 .DS_Store
 .idea
+
+# production
+backend/embed/build
+bilibili-lottery

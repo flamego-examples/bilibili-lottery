@@ -2,6 +2,12 @@
 
 一款支持对哔哩哔哩视频或动态评论进行抽奖的小程序，架构上使用 [React](https://reactjs.org) 和 [Flamego](https://flamego.dev) 实现前后端分离。
 
+## 界面预览
+
+<img width="500" src="https://user-images.githubusercontent.com/2946214/221393435-6fe7327e-0b92-4a93-9710-e540f24ef6ce.png">
+
+<img width="500" src="https://user-images.githubusercontent.com/2946214/221393460-beaae548-a846-4365-80a0-e44c787c103e.png">
+
 ## 本地开发
 
 1. 复制 `.env.example` 文件到 `.env`：
@@ -17,6 +23,20 @@
     ```sh
     cd ../backend
     go run ./cmd
+    ```
+
+## 编译部署
+
+1. 构建前端生产版本：
+    ```sh
+    cd frontend
+    pnpm run build
+    ```
+1. 编译并启动后端：
+    ```sh
+    cd ../backend
+    go build -o bilibili-lottery ./cmd
+    FLAMEGO_ENV=production ./bilibili-lottery
     ```
 
 ## 授权许可
