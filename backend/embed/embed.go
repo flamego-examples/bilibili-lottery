@@ -3,20 +3,15 @@ package embed
 import (
 	"embed"
 	"io/fs"
-	"path"
 )
 
-//go:embed build/*
-var assets embed.FS
-
-type webAssets struct {
-	embed.FS
-}
-
-func (w *webAssets) Open(name string) (fs.File, error) {
-	return w.FS.Open(path.Join("build", name))
-}
+//go:embed *
+var webAssets embed.FS
 
 func WebAssets() fs.FS {
-	return &webAssets{assets}
+	fs, err := fs.Sub(webAssets, "build")
+	if err != nil {
+		panic(err)
+	}
+	return fs
 }
