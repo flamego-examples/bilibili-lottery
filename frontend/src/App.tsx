@@ -36,8 +36,12 @@ function LotteryForm({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    let backendUrl = "";
+    if (process.env.NODE_ENV === "development") {
+      backendUrl = String(process.env.REACT_APP_BACKEND_URL);
+    }
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/api/lottery`, {
+      .post(`${backendUrl}/api/lottery`, {
         url: url,
         winnerCount: winnerCount,
       })

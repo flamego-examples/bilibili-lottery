@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='../backend/embed/build' react-scripts build",
     "test": "react-scripts test"
   },
   "eslintConfig": {
