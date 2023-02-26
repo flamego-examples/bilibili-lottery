@@ -24,6 +24,7 @@
     cd ../backend
     go run ./cmd
     ```
+1. 浏览器访问 http://localhost:3000
 
 ## 编译部署
 
@@ -38,6 +39,7 @@
     go build -o bilibili-lottery ./cmd
     FLAMEGO_ENV=production ./bilibili-lottery
     ```
+1. 浏览器访问 http://localhost:2830
 
 ## 授权许可
 
