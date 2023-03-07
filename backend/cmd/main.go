@@ -13,7 +13,13 @@ import (
 	"github.com/flamego-examples/bilibili-lottery/route"
 )
 
+var version string
+
 func main() {
+	if version != "" {
+		flamego.SetEnv(flamego.EnvTypeProd)
+	}
+
 	f := flamego.New()
 	f.Use(flamego.Logger())
 	f.Use(flamego.Recovery())
