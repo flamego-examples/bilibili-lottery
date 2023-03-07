@@ -4,3 +4,5 @@
 # production
 backend/embed/build
 bilibili-lottery
+
+dist/
