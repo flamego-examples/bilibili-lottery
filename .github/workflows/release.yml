@@ -16,6 +16,16 @@ jobs:
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: |
+            - cwd: frontend
+      - name: Build frontend
+        run: |
+          cd frontend
+          pnpm run build
       - name: Install Go
         uses: actions/setup-go@v3
         with:
