@@ -11,14 +11,17 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
-      - uses: actions/setup-go@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
         with:
-          go-version: '>=1.20.1'
+          go-version: 1.20.x
           cache: true
+          cache-dependency-path: backend/go.sum
       - uses: goreleaser/goreleaser-action@v4
         with:
           distribution: goreleaser
