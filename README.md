@@ -8,6 +8,12 @@
 
 <img width="500" src="https://user-images.githubusercontent.com/2946214/221393460-beaae548-a846-4365-80a0-e44c787c103e.png">
 
+## 下载使用
+
+1. 前往 [Releases](https://github.com/flamego-examples/bilibili-lottery/releases) 页面下载对应操作系统的二进制
+1. 解压并启动程序
+1. 浏览器访问 http://localhost:2830
+
 ## 本地开发
 
 1. 复制 `.env.example` 文件到 `.env`：
