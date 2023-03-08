@@ -32,4 +32,4 @@ jobs:
       - name: Run ESLint
         run: |
           cd frontend
-          eslint . --ext .js,.jsx,.ts,.tsx
+          pnpm run lint

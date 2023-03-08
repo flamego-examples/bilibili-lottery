@@ -23,7 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "BUILD_PATH='../backend/embed/build' react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
