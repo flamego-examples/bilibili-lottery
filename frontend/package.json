@@ -1,6 +1,6 @@
 {
   "name": "bilibili-lottery",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.16",
@@ -23,7 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "BUILD_PATH='../backend/embed/build' react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,10 @@
     ]
   },
   "devDependencies": {
-    "@types/testing-library__jest-dom": "^5.14.5"
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.35.0",
+    "eslint-plugin-react": "^7.32.2"
   }
 }
