@@ -1,0 +1,35 @@
+name: Typescript
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - '**.jsx'
+      - '.github/workflows/typescript.yml'
+  pull_request:
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - '**.jsx'
+      - '.github/workflows/typescript.yml'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: |
+            - cwd: frontend
+      - name: Run ESLint
+        run: |
+          cd frontend
+          eslint . --ext .js,.jsx,.ts,.tsx
