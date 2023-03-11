@@ -31,13 +31,25 @@ func (*LotteryHandler) Lottery(ctx context.Context, form form.Lottery, errs bind
 		return ctx.Error(errors.New("invalid url"))
 	}
 
+	allowedHosts := []string{
+		"t.bilibili.com",
+		"www.bilibili.com",
+		"bilibili.com",
+	}
+	if !lo.Contains(allowedHosts, u.Host) {
+		return ctx.Error(errors.Errorf("unexpected URL host: %q", u.Host))
+	}
+
 	var replyType biliapi.ReplyType
 	var replyOid string
-	switch u.Host {
-	case "t.bilibili.com":
+	switch {
+	case u.Host == "t.bilibili.com":
 		replyType = biliapi.ReplyTypeDynamic
 		replyOid = strings.Trim(u.Path, "/")
-	case "www.bilibili.com", "bilibili.com":
+	case strings.Contains(u.Path, "/opus/"):
+		replyType = biliapi.ReplyTypeDynamic
+		replyOid = strings.TrimPrefix(u.Path, "/opus/")
+	case strings.Contains(u.Path, "/video/"):
 		bvid := strings.TrimPrefix(u.Path, "/video/")
 		bvid = strings.Trim(bvid, "/")
 		videoInfo, err := biliapi.GetVideoInfo(ctx.Request().Context(), bvid)
@@ -46,8 +58,9 @@ func (*LotteryHandler) Lottery(ctx context.Context, form form.Lottery, errs bind
 		}
 		replyType = biliapi.ReplyTypeVideo
 		replyOid = strconv.Itoa(videoInfo.Data.Aid)
-	default:
-		return ctx.Error(errors.Errorf("unexpected url host: %q", u.Host))
+	}
+	if replyOid == "" {
+		return ctx.Error(errors.New("empty replyOID"))
 	}
 
 	type winner struct {
