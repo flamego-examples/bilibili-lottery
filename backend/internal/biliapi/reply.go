@@ -13,6 +13,7 @@ type ReplyType string
 
 const (
 	ReplyTypeVideo   = "1"
+	ReplyTypeArticle = "12"
 	ReplyTypeDynamic = "17"
 )
 
