@@ -49,6 +49,9 @@ func (*LotteryHandler) Lottery(ctx context.Context, form form.Lottery, errs bind
 	case strings.Contains(u.Path, "/opus/"):
 		replyType = biliapi.ReplyTypeDynamic
 		replyOid = strings.TrimPrefix(u.Path, "/opus/")
+	case strings.Contains(u.Path, "/read/"):
+		replyType = biliapi.ReplyTypeArticle
+		replyOid = strings.TrimPrefix(u.Path, "/read/cv")
 	case strings.Contains(u.Path, "/video/"):
 		bvid := strings.TrimPrefix(u.Path, "/video/")
 		bvid = strings.Trim(bvid, "/")
